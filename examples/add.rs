@@ -1,8 +1,7 @@
 extern crate parity_wasm;
 extern crate wasmi;
 
-use wasmi::{RuntimeValue, ModuleInstance, NopExternals, ImportsBuilder};
-
+use wasmi::{ImportsBuilder, ModuleInstance, NopExternals, RuntimeValue};
 
 fn main() {
     let module = parity_wasm::deserialize_file("experiment.wasm").expect("File to be deserialized");
@@ -11,5 +10,12 @@ fn main() {
         .expect("Failed to instantiate module")
         .run_start(&mut NopExternals)
         .expect("Failed to run start function in module");
-    println!("Result: {:?}", main.invoke_export("add", &vec![RuntimeValue::I32(2),RuntimeValue::I32(2)], &mut NopExternals).expect(""));
+    println!(
+        "Result: {:?}",
+        main.invoke_export(
+            "add",
+            &vec![RuntimeValue::I32(2), RuntimeValue::I32(2)],
+            &mut NopExternals
+        ).expect("")
+    );
 }
