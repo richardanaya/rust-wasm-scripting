@@ -1,0 +1,11 @@
+[package]
+name = "experiment"
+version = "0.1.0"
+authors = ["richard anaya"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasmi = "0.4"
+parity-wasm = "0.31"
